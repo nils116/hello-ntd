@@ -30,7 +30,7 @@ export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const particleIdRef = useRef(0);
   const rippleIdRef = useRef(0);
-  const frameRef = useRef<number>();
+  const frameRef = useRef<number | null>(null);
 
   const createParticle = useCallback((x: number, y: number, burst = false) => {
     const count = burst ? 12 : 1;
@@ -131,7 +131,7 @@ export default function Home() {
 
     frameRef.current = requestAnimationFrame(animate);
     return () => {
-      if (frameRef.current) cancelAnimationFrame(frameRef.current);
+      if (frameRef.current) { cancelAnimationFrame(frameRef.current); }
     };
   }, []);
 
